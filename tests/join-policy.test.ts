@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { decideJoinRequest } from "../src/join-policy.js";
 
-const allowedStatuses = ["member", "administrator", "creator"] as const;
-const pendingStatuses = ["left", "kicked", "restricted"] as const;
+const allowedStatuses = ["member", "administrator", "creator", "restricted"] as const;
+const pendingStatuses = ["left", "kicked"] as const;
 
 describe("decideJoinRequest", () => {
   for (const status of allowedStatuses) {
