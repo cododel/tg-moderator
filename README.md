@@ -25,12 +25,14 @@
 
 ## Настройка
 
+Требуется Bun `1.3.14+`.
+
 ```bash
 cp .env.example .env
-npm install
-npm test
-npm run typecheck
-npm start
+bun install
+bun run test
+bun run typecheck
+bun run start
 ```
 
 `.env`:
@@ -65,10 +67,10 @@ docker run --rm \
 ## Разработка
 
 ```bash
-npm test          # все тесты
-npm run typecheck # проверка TypeScript
-npm run build     # сборка в dist/
-npm run dev       # запуск в watch-режиме
+bun run test      # все тесты
+bun run typecheck # проверка TypeScript
+bun run build     # сборка в dist/
+bun run dev       # запуск в watch-режиме
 ```
 
 ## Структура
