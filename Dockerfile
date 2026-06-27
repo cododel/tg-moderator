@@ -10,7 +10,7 @@ COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
 
 FROM deps AS build
-COPY tsconfig.json vitest.config.ts ./
+COPY tsconfig.json ./
 COPY src ./src
 COPY tests ./tests
 RUN bun run test

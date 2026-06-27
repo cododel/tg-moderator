@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
-import { decideJoinRequest } from "../src/join-policy.js";
+import { describe, expect, it } from "bun:test";
+import { decideJoinRequest } from "../src/join-policy.ts";
 
 const allowedStatuses = ["member", "administrator", "creator", "restricted"] as const;
 const pendingStatuses = ["left", "kicked"] as const;

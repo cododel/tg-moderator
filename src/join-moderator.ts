@@ -1,4 +1,4 @@
-import { decideJoinRequest, type ChannelMemberStatus, type JoinDecision } from "./join-policy.js";
+import { decideJoinRequest, type ChannelMemberStatus, type JoinDecision } from "./join-policy.ts";
 
 export type JoinRequestRef = {
   chatId: string | number;

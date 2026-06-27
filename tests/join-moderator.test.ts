@@ -1,17 +1,17 @@
-import { describe, expect, it, vi } from "vitest";
-import { moderateJoinRequest } from "../src/join-moderator.js";
+import { describe, expect, it, mock } from "bun:test";
+import { moderateJoinRequest } from "../src/join-moderator.ts";
 
 function fakeApi(status: "member" | "administrator" | "creator" | "left" | "kicked" | "restricted") {
   return {
-    getChatMember: vi.fn().mockResolvedValue({ status }),
-    approveChatJoinRequest: vi.fn().mockResolvedValue(true)
+    getChatMember: mock().mockResolvedValue({ status }),
+    approveChatJoinRequest: mock().mockResolvedValue(true)
   };
 }
 
 function fakeApiWithLookupError(error: unknown) {
   return {
-    getChatMember: vi.fn().mockRejectedValue(error),
-    approveChatJoinRequest: vi.fn().mockResolvedValue(true)
+    getChatMember: mock().mockRejectedValue(error),
+    approveChatJoinRequest: mock().mockResolvedValue(true)
   };
 }
 

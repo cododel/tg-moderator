@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
-import { loadConfig } from "../src/config.js";
+import { describe, expect, it } from "bun:test";
+import { loadConfig } from "../src/config.ts";
 
 describe("loadConfig", () => {
   it("loads the bot token and required channel id from environment variables", () => {

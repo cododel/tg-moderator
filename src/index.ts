@@ -1,6 +1,6 @@
 import "dotenv/config";
-import { createBot } from "./bot.js";
-import { loadConfig } from "./config.js";
+import { createBot } from "./bot.ts";
+import { loadConfig } from "./config.ts";
 
 const config = loadConfig(process.env);
 const bot = createBot(config);
