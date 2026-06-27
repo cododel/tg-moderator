@@ -63,5 +63,14 @@ export async function moderateJoinRequest({
     await api.approveChatJoinRequest(request.chatId, request.userId);
   }
 
+  console.info("moderateJoinRequest", {
+    userId: request.userId,
+    chatId: request.chatId,
+    action: decision.action,
+    reason: "reason" in decision ? decision.reason : undefined,
+    channelStatus: member.status,
+    lookupError
+  });
+
   return { ...decision, channelStatus: member.status, ...(lookupError ? { lookupError } : {}) };
 }
