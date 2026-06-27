@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { decideJoinRequest } from "../src/join-policy";
+import { decideJoinRequest } from "@/join-policy";
 
 const allowedStatuses = ["member", "administrator", "creator", "restricted"] as const;
 const pendingStatuses = ["left", "kicked"] as const;

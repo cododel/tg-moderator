@@ -1,5 +1,5 @@
 import { describe, expect, it, mock } from "bun:test";
-import { moderateJoinRequest } from "../src/join-moderator";
+import { moderateJoinRequest } from "@/join-moderator";
 
 function fakeApi(status: "member" | "administrator" | "creator" | "left" | "kicked" | "restricted") {
   return {

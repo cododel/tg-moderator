@@ -1,6 +1,6 @@
 import { Bot, type Context } from "grammy";
-import type { AppConfig } from "./config";
-import { moderateJoinRequest, type JoinModerationApi } from "./join-moderator";
+import type { AppConfig } from "@/config";
+import { moderateJoinRequest, type JoinModerationApi } from "@/join-moderator";
 
 type ChatJoinRequestContext = {
   api: JoinModerationApi;
@@ -65,7 +65,11 @@ export function registerWelcomeReaction(bot: Bot, config: Pick<AppConfig, "targe
 
 export function createBot(config: AppConfig): Bot {
   const bot = new Bot(config.botToken);
-  registerJoinRequestHandler(bot as unknown as JoinRequestBot, config);
+  registerJoinRequestHandler(
+    // grammY Bot.on() has complex overloads; narrow interface avoids spreading them to tests
+    bot as unknown as JoinRequestBot,
+    config
+  );
   registerWelcomeReaction(bot, config);
   return bot;
 }
