@@ -5,7 +5,7 @@ import { loadConfig } from "./config.js";
 const config = loadConfig(process.env);
 const bot = createBot(config);
 
-console.info("Starting telegram-join-moderator", {
+console.info("Starting tg-moderator", {
   requiredChannelId: config.requiredChannelId,
   targetGroupId: config.targetGroupId ?? "any"
 });

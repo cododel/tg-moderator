@@ -1,4 +1,4 @@
-# telegram-join-moderator
+# tg-moderator
 
 Простой Telegram-бот на TypeScript + grammY: принимает заявки в группу только от пользователей, которые уже подписаны на обязательный канал.
 

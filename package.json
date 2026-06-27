@@ -1,5 +1,5 @@
 {
-  "name": "telegram-join-moderator",
+  "name": "tg-moderator",
   "version": "0.1.0",
   "description": "Telegram join-request moderator bot: approves group requests only for subscribers of a required channel.",
   "type": "module",
