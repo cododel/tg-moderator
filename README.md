@@ -29,21 +29,33 @@
 
 ```bash
 cp .env.example .env
+# отредактируй .env — вставь токен из @BotFather и id канала/группы
 bun install
 bun run test
 bun run typecheck
 bun run start
 ```
 
-`.env`:
+### Как получить ID группы и канала
+
+Telegram в интерфейсе показывает ID без префикса. **Настоящий ID всегда с `-100`:**
+
+| Где взять | Что видишь | Что писать в .env |
+|---|---|---|
+| Web-клиент → группа → URL | `1234567890` | `-1000000000000` |
+| Web-клиент → канал → URL | `9876543210` | `-1000000000000` |
+
+Проще всего не гадать, а использовать `@username`:
+- Канал: `REQUIRED_CHANNEL_ID=@your_channel` (если есть username)
+- Группа: `TARGET_GROUP_ID=-100<id>` (обязательно найти точный id через API)
+
+### `.env` после заполнения
 
 ```bash
-BOT_TOKEN=123456:replace_me
+BOT_TOKEN=12345...Zrv8
 REQUIRED_CHANNEL_ID=@your_channel
-TARGET_GROUP_ID=-1001234567890
+TARGET_GROUP_ID=-1000000000000
 ```
-
-`TARGET_GROUP_ID` опционален, но лучше задать, чтобы бот не модерировал случайную группу, куда его добавили. ID группы в Telegram всегда с префиксом `-100` для супергрупп (например `-1000000000000`, а не `1234567890`).
 
 ## Docker / Bun runtime
 
