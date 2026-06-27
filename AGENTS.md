@@ -3,15 +3,15 @@
 Бот модерации заявок в Telegram: проверяет подписку на канал через `getChatMember`.
 
 ## Стек
-- **Runtime:** Bun 1.3.14 (native TS, без tsc-сборки)
+- **Runtime:** Bun 1.3.14 (native TS, без tsc-сборки, импорты без расширений)
 - **Фреймворк:** grammY ^1.44
 - **Валидация:** zod ^4.4
-- **Тесты:** Vitest ^4.1 (15 тестов, 4 файла)
+- **Тесты:** bun:test (встроенный, 15 тестов, 4 файла)
 
 ## Запуск
 ```bash
 bun run start:prod   # = bun src/index.ts
-bun run test         # vitest run
+bun run test         # bun test
 bun run typecheck    # tsc --noEmit
 ```
 
