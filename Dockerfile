@@ -10,12 +10,11 @@ COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
 
 FROM deps AS build
-COPY tsconfig.json tsconfig.build.json vitest.config.ts ./
+COPY tsconfig.json vitest.config.ts ./
 COPY src ./src
 COPY tests ./tests
 RUN bun run test
 RUN bun run typecheck
-RUN bun run build
 
 FROM base AS prod-deps
 ENV NODE_ENV=production
@@ -28,5 +27,6 @@ STOPSIGNAL SIGTERM
 USER bun
 COPY --from=prod-deps --chown=bun:bun /app/package.json ./package.json
 COPY --from=prod-deps --chown=bun:bun /app/node_modules ./node_modules
-COPY --from=build --chown=bun:bun /app/dist ./dist
+COPY --from=build --chown=bun:bun /app/src ./src
+COPY --from=build --chown=bun:bun /app/tsconfig.json ./tsconfig.json
 CMD ["bun", "run", "start:prod"]
