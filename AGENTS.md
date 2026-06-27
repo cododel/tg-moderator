@@ -3,14 +3,15 @@
 Бот модерации заявок в Telegram: проверяет подписку на канал через `getChatMember`.
 
 ## Стек
-- **Runtime:** Bun 1.3.14 (native TS, без tsc-сборки, импорты без расширений)
+- **Runtime:** Bun 1.3.14 (native TS, без tsc-сборки)
 - **Фреймворк:** grammY ^1.44
-- **Валидация:** zod ^4.4
 - **Тесты:** bun:test (встроенный, 15 тестов, 4 файла)
+- **Алиасы:** `@/` → `src/`
 
 ## Запуск
 ```bash
 bun run start:prod   # = bun src/index.ts
+bun run dev          # bun --watch src/index.ts
 bun run test         # bun test
 bun run typecheck    # tsc --noEmit
 ```
@@ -38,9 +39,9 @@ tests/
 ```
 
 ## Ключевые решения
-- `restricted` статус канала = подписан (аппрув), а не pending
-- `user not found` → заявка остаётся висеть (не аппрувим, не отказываем)
-- При прочих ошибках API — заявка остаётся висеть (fail-safe)
+- `restricted` статус канала = подписан (аппрув)
+- `user not found` → заявка остаётся висеть (fail-safe)
+- При прочих ошибках API → заявка висеть
 - Зааппрувленные юзеры трекаются 60с в Set для реакции 🤝
 
 ## Docker
