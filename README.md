@@ -62,9 +62,9 @@ TARGET_GROUP_ID=-1001234567890
 Образ собирается на `oven/bun` в multi-stage режиме:
 
 - `deps` — ставит все зависимости по `bun.lock`;
-- `build` — гоняет `bun run test`, `bun run typecheck`, `bun run build`;
+- `build` — гоняет `bun run test`, `bun run typecheck`;
 - `prod-deps` — ставит только production dependencies;
-- `runtime` — запускает compiled JS под Bun от non-root пользователя `bun`.
+- `runtime` — запускает TypeScript напрямую через Bun от non-root пользователя `bun`.
 
 ```bash
 docker build -t tg-moderator:local .
@@ -81,7 +81,6 @@ docker run --rm \
 ```bash
 bun run test      # все тесты
 bun run typecheck # проверка TypeScript
-bun run build     # сборка в dist/
 bun run dev       # запуск в watch-режиме
 ```
 
