@@ -1,5 +1,5 @@
 import { describe, expect, it, mock } from "bun:test";
-import { registerJoinRequestHandler } from "../src/bot.ts";
+import { registerJoinRequestHandler } from "../src/bot";
 
 function fakeBot() {
   const handlers: Array<(ctx: Parameters<Parameters<typeof registerJoinRequestHandler>[0]["on"]>[1] extends (ctx: infer Ctx) => Promise<void> ? Ctx : never) => Promise<void>> = [];

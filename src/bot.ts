@@ -1,6 +1,6 @@
 import { Bot, type Context } from "grammy";
-import type { AppConfig } from "./config.ts";
-import { moderateJoinRequest, type JoinModerationApi } from "./join-moderator.ts";
+import type { AppConfig } from "./config";
+import { moderateJoinRequest, type JoinModerationApi } from "./join-moderator";
 
 type ChatJoinRequestContext = {
   api: JoinModerationApi;
