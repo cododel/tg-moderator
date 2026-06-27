@@ -8,7 +8,6 @@ export type JoinRequestRef = {
 export type JoinModerationApi = {
   getChatMember(chatId: string | number, userId: number): Promise<{ status: ChannelMemberStatus }>;
   approveChatJoinRequest(chatId: string | number, userId: number): Promise<unknown>;
-  declineChatJoinRequest(chatId: string | number, userId: number): Promise<unknown>;
 };
 
 export type ModerateJoinRequestInput = {
@@ -62,8 +61,6 @@ export async function moderateJoinRequest({
 
   if (decision.action === "approve") {
     await api.approveChatJoinRequest(request.chatId, request.userId);
-  } else {
-    await api.declineChatJoinRequest(request.chatId, request.userId);
   }
 
   return { ...decision, channelStatus: member.status, ...(lookupError ? { lookupError } : {}) };

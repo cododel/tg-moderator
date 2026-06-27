@@ -18,8 +18,7 @@ describe("registerJoinRequestHandler", () => {
     const { bot, handlers } = fakeBot();
     const api = {
       getChatMember: vi.fn().mockResolvedValue({ status: "member" }),
-      approveChatJoinRequest: vi.fn().mockResolvedValue(true),
-      declineChatJoinRequest: vi.fn().mockResolvedValue(true)
+      approveChatJoinRequest: vi.fn().mockResolvedValue(true)
     };
 
     registerJoinRequestHandler(bot, {
@@ -39,6 +38,5 @@ describe("registerJoinRequestHandler", () => {
 
     expect(api.getChatMember).toHaveBeenCalledWith("@my_channel", 42);
     expect(api.approveChatJoinRequest).toHaveBeenCalledWith(-100100, 42);
-    expect(api.declineChatJoinRequest).not.toHaveBeenCalled();
   });
 });

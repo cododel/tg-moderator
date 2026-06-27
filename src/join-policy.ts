@@ -2,12 +2,12 @@ export type ChannelMemberStatus = "creator" | "administrator" | "member" | "rest
 
 export type JoinDecision =
   | { action: "approve" }
-  | { action: "decline" };
+  | { action: "ignore"; reason: "not_subscribed" };
 
 export function decideJoinRequest(member: { status: ChannelMemberStatus }): JoinDecision {
   if (["member", "administrator", "creator"].includes(member.status)) {
     return { action: "approve" };
   }
 
-  return { action: "decline" };
+  return { action: "ignore", reason: "not_subscribed" };
 }

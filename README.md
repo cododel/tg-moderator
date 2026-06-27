@@ -8,8 +8,8 @@
 2. Бот получает `chat_join_request`.
 3. Бот проверяет `getChatMember(REQUIRED_CHANNEL_ID, user_id)`.
 4. Если статус `member`, `administrator` или `creator` — вызывает `approveChatJoinRequest`.
-5. Если статус `left`, `kicked`, `restricted` или Telegram отвечает `Bad Request: user not found` — вызывает `declineChatJoinRequest`.
-6. Если проверка канала падает по другой причине, бот не апрувит и не отклоняет заявку, чтобы не банить людей из-за misconfig.
+5. Если статус `left`, `kicked`, `restricted` или Telegram отвечает `Bad Request: user not found` — ничего не делает, заявка остается висеть в pending.
+6. Если проверка канала падает по другой причине, бот тоже ничего не делает с заявкой: это fail-safe против случайного апрува при misconfig.
 
 ## Права в Telegram
 
@@ -80,7 +80,7 @@ src/
   bot.ts            # grammY adapter: регистрирует chat_join_request handler
   config.ts         # env config parser
   index.ts          # runtime entrypoint
-  join-moderator.ts # orchestration: lookup -> approve/decline
+  join-moderator.ts # orchestration: lookup -> approve/keep pending
   join-policy.ts    # чистая политика статусов
 
 tests/

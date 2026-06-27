@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { decideJoinRequest } from "../src/join-policy.js";
 
 const allowedStatuses = ["member", "administrator", "creator"] as const;
-const rejectedStatuses = ["left", "kicked", "restricted"] as const;
+const pendingStatuses = ["left", "kicked", "restricted"] as const;
 
 describe("decideJoinRequest", () => {
   for (const status of allowedStatuses) {
@@ -11,9 +11,9 @@ describe("decideJoinRequest", () => {
     });
   }
 
-  for (const status of rejectedStatuses) {
-    it(`declines applicants whose required channel status is ${status}`, () => {
-      expect(decideJoinRequest({ status })).toEqual({ action: "decline" });
+  for (const status of pendingStatuses) {
+    it(`keeps applicants pending when their required channel status is ${status}`, () => {
+      expect(decideJoinRequest({ status })).toEqual({ action: "ignore", reason: "not_subscribed" });
     });
   }
 });
