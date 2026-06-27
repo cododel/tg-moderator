@@ -43,6 +43,25 @@ TARGET_GROUP_ID=-1001234567890
 
 `TARGET_GROUP_ID` опционален, но лучше задать, чтобы бот не модерировал случайную группу, куда его добавили.
 
+## Docker / Bun runtime
+
+Образ собирается на `oven/bun` в multi-stage режиме:
+
+- `deps` — ставит все зависимости по `bun.lock`;
+- `build` — гоняет `bun run test`, `bun run typecheck`, `bun run build`;
+- `prod-deps` — ставит только production dependencies;
+- `runtime` — запускает compiled JS под Bun от non-root пользователя `bun`.
+
+```bash
+docker build -t tg-moderator:local .
+
+docker run --rm \
+  --env-file .env \
+  tg-moderator:local
+```
+
+Переменные окружения не копируются в образ, только передаются на запуске через `--env-file` / secrets.
+
 ## Разработка
 
 ```bash
